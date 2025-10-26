@@ -18,8 +18,8 @@ def test_create_m3u_content():
     assert content.split("\n")[1].startswith("#EXTINF:")
     assert content.split("\n")[2].endswith(".mp3")
 
-def test_create_m3u_file(tmpdir, monkeypatch):
-    monkeypatch.chdir(tmpdir)
+def test_create_m3u_file(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
     playlist = Playlist.from_url(PLAYLIST)
     create_m3u_file("test.m3u", playlist.songs, "", "mp3")
-    assert tmpdir.join("test.m3u").isfile() is True
+    assert tmp_path.join("test.m3u").isfile() is True

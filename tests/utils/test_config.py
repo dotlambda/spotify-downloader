@@ -8,10 +8,10 @@ from spotdl.utils.config import *
 
 
 @pytest.fixture()
-def setup(tmpdir, monkeypatch):
-    monkeypatch.setattr(os.path, "expanduser", lambda *_: tmpdir)
+def setup(tmp_path, monkeypatch):
+    monkeypatch.setattr(os.path, "expanduser", lambda *_: tmp_path)
     data = SimpleNamespace()
-    data.directory = tmpdir
+    data.directory = tmp_path
     yield data
 
 
